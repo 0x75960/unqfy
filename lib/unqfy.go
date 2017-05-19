@@ -22,9 +22,12 @@ func Listup(root string) ([]string, error) {
 				return nil
 			}
 
-			rel, err := filepath.Rel(root, path)
+			abs, err := filepath.Abs(path)
+			if err != nil {
+				return err
+			}
 
-			pathlist = append(pathlist, rel)
+			pathlist = append(pathlist, abs)
 
 			return nil
 		})
