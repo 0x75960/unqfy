@@ -60,7 +60,7 @@ func ListupInDirs(dirs []string) (all []string, err error) {
 // Uniqify files
 func Uniqify(files []string) (uniqified []string, err error) {
 
-	ret := make(map[string][]string)
+	sha256ToPath := make(map[string][]string)
 
 	for _, file := range files {
 
@@ -70,10 +70,10 @@ func Uniqify(files []string) (uniqified []string, err error) {
 		}
 
 		// sha256でまとめる
-		ret[sum] = append(ret[sum], file)
+		sha256ToPath[sum] = append(sha256ToPath[sum], file)
 	}
 
-	for _, value := range ret {
+	for _, value := range sha256ToPath {
 		uniqified = append(uniqified, value[0])
 	}
 
