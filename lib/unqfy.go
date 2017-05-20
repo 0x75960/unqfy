@@ -18,22 +18,21 @@ func Listup(root string) (files []string, err error) {
 		return files, err
 	}
 
-	err = filepath.Walk(root,
-		func(path string, info os.FileInfo, err error) error {
+	err = filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 
-			if info.IsDir() {
-				return nil
-			}
-
-			abs, err := filepath.Abs(path)
-			if err != nil {
-				return err
-			}
-
-			files = append(files, abs)
-
+		if info.IsDir() {
 			return nil
-		})
+		}
+
+		abs, err := filepath.Abs(path)
+		if err != nil {
+			return err
+		}
+
+		files = append(files, abs)
+
+		return nil
+	})
 
 	if err != nil {
 		return files, err
