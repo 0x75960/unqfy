@@ -11,11 +11,9 @@ import (
 )
 
 //Listup file in directory
-func Listup(root string) ([]string, error) {
+func Listup(root string) (files []string, err error) {
 
-	pathlist := []string{}
-
-	err := filepath.Walk(root,
+	err = filepath.Walk(root,
 		func(path string, info os.FileInfo, err error) error {
 
 			if info.IsDir() {
@@ -27,16 +25,16 @@ func Listup(root string) ([]string, error) {
 				return err
 			}
 
-			pathlist = append(pathlist, abs)
+			files = append(files, abs)
 
 			return nil
 		})
 
 	if err != nil {
-		return pathlist, err
+		return files, err
 	}
 
-	return pathlist, nil
+	return
 }
 
 // ListupInDirs specified
