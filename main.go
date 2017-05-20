@@ -27,7 +27,7 @@ func main() {
 
 	err := unqfy.Copy(dstdir, srcdir)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 
 }
