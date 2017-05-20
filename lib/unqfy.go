@@ -13,6 +13,11 @@ import (
 //Listup file in directory
 func Listup(root string) (files []string, err error) {
 
+	if _, err = os.Stat(root); err != nil {
+		// 対象ディレクトリが存在しない等
+		return files, err
+	}
+
 	err = filepath.Walk(root,
 		func(path string, info os.FileInfo, err error) error {
 
