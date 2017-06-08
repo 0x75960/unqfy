@@ -61,6 +61,18 @@ func ListupInDirs(dirs []string) (all []string, err error) {
 
 }
 
+// UniqueIn dir uniqify by sha256
+func UniqueIn(dir string) (files []string, err error) {
+
+	all, err := Listup(dir)
+	if err != nil {
+		return files, err
+	}
+
+	return Uniqify(all)
+
+}
+
 // Uniqify files
 func Uniqify(files []string) (uniqified []string, err error) {
 
